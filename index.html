@@ -37,21 +37,33 @@
     </form>
     <script src="/socket.io/socket.io.js"></script>
 <script>
-  function joinRoom(arg){
-    //Hide the div chooseRoom
-    document.getElementById("chooseRoom").style.display = "none";
-    //create socket io room
-    var socket = io('http://localhost:3000/'+arg); //github copilot
-  }
-  var socket = io();
 
+var socket = io();
   var messages = document.getElementById('messages');
   var form = document.getElementById('form');
   var passwordform = document.getElementById('setPassword');
   var input = document.getElementById('input');
   var input_username = document.getElementById('inputpassword');
   var current_username ="";
+  var current_room = '';
 
+  // function joinRoom(arg){
+  //   //Hide the div chooseRoom
+  //   document.getElementById("chooseRoom").style.display = "none";
+  //   //create socket io room
+  //   io.sockets.in(arg).emit('event', data);
+  // }
+
+  //Function to create socket io room
+  function joinRoom(arg){
+    //Hide the div chooseRoom
+    document.getElementById("chooseRoom").style.display = "none";
+    //create socket io room
+    current_room = arg;
+    socket.emit('create', current_room);
+    console.log('join room '+current_room);
+
+  }
 
   form.addEventListener('submit', function(e) {
     e.preventDefault();
