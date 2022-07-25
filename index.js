@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var server   = require('http').Server(app);
 var io       = require('socket.io')(server);
+var users = [];
 
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html');
@@ -12,20 +13,23 @@ io.on('connection', (socket) => {
 
   socket.on('create', function(room) {
     socket.join(room);
+    // users[socket.id] = room;
+    socket.room = room;
     console.log(room);
   });
 
 
   socket.on('disconnect', () => {       
     // console.log('user disconnected');
+    //Vider l'array users['socket.id] en se deconnectant 
   });
 
   socket.on('chat message', (msg, username) => {
-    //console.log("username :"+username);
     if(!username){
       username= "anonymous";
     }
-    // io.to(2).emit('chat message', username + ": "+ msg);
+    //users[socket.id]
+    io.to(socket.room).emit('chat message', username + ": "+ msg); //Envoyer le message dans sa room
   });
 
   socket.on('username', (username) => {
