@@ -2,92 +2,47 @@
 <html>
   <head>
     <title>Socket.IO chat</title>
+    <!-- include public/style.css -->
+    <link href="public/style.css" rel="stylesheet">
     <style>
-      body { margin: 0; padding-bottom: 3rem; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
 
-      #form { background: rgba(0, 0, 0, 0.15); padding: 0.25rem; position: fixed; bottom: 0; left: 0; right: 0; display: flex; height: 3rem; box-sizing: border-box; backdrop-filter: blur(10px); }
-      #setPassword{    top: 0px;
-    left: 960px;
-    position: absolute;
-      }
-      #input { border: none; padding: 0 1rem; flex-grow: 1; border-radius: 2rem; margin: 0.25rem; }
-      #input:focus { outline: none; }
-      #form > button { background: #333; border: none; padding: 0 1rem; margin: 0.25rem; border-radius: 3px; outline: none; color: #fff; }
-
-      #messages { list-style-type: none; margin: 0; padding: 0; }
-      #messages > li { padding: 0.5rem 1rem; }
-      #messages > li:nth-child(odd) { background: #efefef; }
     </style>
   </head>
   <body>
     <div id="chooseRoom" style="width: 100%; height: 100%;background-color: rgb(187, 187, 187);    position:fixed;     z-index:3;    ">
-     <center>
-      <button onclick="joinRoom(1)">Room n°1</button><br>
-      <button onclick="joinRoom(2)">Room n°2</button><br>
-      <button onclick="joinRoom(3)">Room n°3</button><br>
-    </center>
+
+      <br>
+      <div class="roombutton" onclick="joinRoom(1)"><div class="cube"><h1>A</h1></div><h1>Chat room A</h1> <div class="rectangle">1/16</div><div class="smallcube"></div></div><br>
+      <div class="roombutton" onclick="joinRoom(2)"><div class="cube"><h1>A</h1></div><h1>Chat room B</h1><div class="rectangle">1/16</div><div class="smallcube"></div></div><br>
+      <div class="roombutton" onclick="joinRoom(3)"><div class="cube"><h1>A</h1></div><h1>Chat room C</h1><div class="rectangle">1/16</div><div class="smallcube"></div></div><br>
+      <div class="roombutton" onclick="joinRoom(4)"><div class="cube"><h1>A</h1></div><h1>Chat room D</h1><div class="rectangle">1/16</div><div class="smallcube"></div></div>
+      <br>
+    
     </div>
+    <div id="messages">
 
-    <ul id="messages"></ul>
-    <form id="setPassword" action="">
-      <input id="inputpassword" autocomplete="off" /><button>Set username</button>
-    </form>
-    <form id="form" action="">
-      <input id="input" autocomplete="off" /><button>Send</button>
-    </form>
+    </div>
+    
+      <form id="setPassword" action="">
+        <input id="inputpassword" autocomplete="off" /><button>Set username</button>
+      </form>
+
+      <button style="position: fixed; top: 680px;" onclick="ToggleDraw()">Toggle Drawing</button>
+      <section id="chatbox">
+          <!-- <canvas id="drawing-board" style="
+          left: 18px;
+          top: 709px;
+          position: fixed;
+          z-index: 1;"></canvas> -->
+
+            <form id="form" action="">
+              <textarea style="font-size: 36px;" id="input" autocomplete="off"></textarea><button id="sendbutton">Send</button>
+            </form>
+    </section>
     <script src="/socket.io/socket.io.js"></script>
-<script>
-
-var socket = io();
-  var messages = document.getElementById('messages');
-  var form = document.getElementById('form');
-  var passwordform = document.getElementById('setPassword');
-  var input = document.getElementById('input');
-  var input_username = document.getElementById('inputpassword');
-  var current_username ="";
-  var current_room = '';
-
-  // function joinRoom(arg){
-  //   //Hide the div chooseRoom
-  //   document.getElementById("chooseRoom").style.display = "none";
-  //   //create socket io room
-  //   io.sockets.in(arg).emit('event', data);
-  // }
-
-  //Function to create socket io room
-  function joinRoom(arg){
-    //Hide the div chooseRoom
-    document.getElementById("chooseRoom").style.display = "none";
-    //create socket io room
-    current_room = arg;
-    socket.emit('create', current_room);
-    console.log('join room '+current_room);
-
-  }
-
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    if (input.value) {
-      socket.emit('chat message', input.value, current_username);
-      input.value = '';
-    }
-  });
-
-  passwordform.addEventListener('submit', function(e) {
-    e.preventDefault();
-    console.log("username envoyé");
-    if (input_username.value && current_username != input_username.value) {
-      current_username = input_username.value;
-      socket.emit('username', input_username.value);
-    }
-  });
-
-  socket.on('chat message', function(msg) {
-    var item = document.createElement('li');
-    item.textContent = msg;
-    messages.appendChild(item);
-    window.scrollTo(0, document.body.scrollHeight);
-  });
-</script>
+    <script src="public/script.js"></script>
+    <script src="public/canvas.js"></script>
+  
+    
   </body>
 </html>
