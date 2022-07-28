@@ -1,3 +1,13 @@
+@font-face {
+  font-family: 'Nintendos'; /*a name to be used later*/
+  src: url('/public/Nintendo-DS-BIOS.ttf'); /*URL to font*/
+}
+
+@font-face {
+  font-family: 'RevMiniPixel'; /*a name to be used later*/
+  src: url('/public/RevMiniPixel.ttf'); /*URL to font*/
+}
+
 body { margin: 0; padding-bottom: 3rem; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 background: rgba(92, 92, 92, 1); }
 
@@ -115,18 +125,24 @@ p{
 }
 
 .cube{
-  display: inline-block;
+  /* display: inline-block; */
+  display: flex;
   background-color: red;
   width: 25vh;
   height: 100%;
-
+  align-items: center;
+  justify-content: space-around;
  
 }
 
 .cube > h1{
   text-align: center;
   margin: 0;
-  font-size: 170px;
+  font-size: 200px;
+  font-family: RevMiniPixel;
+  padding-top: 35px;
+  padding-left: 20px;
+  
 }
 
 
@@ -134,6 +150,9 @@ p{
   background-color: red;
   width: 40vh;
   height: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .smallcube{
@@ -142,4 +161,24 @@ p{
   width: 18vh;
   height: 75%;
   margin-right: 20px;
+}
+
+.chatroomtitle{
+  font-family: Nintendos;
+  font-size: 100px;
+  font-weight: 100;
+}
+
+.roomsize{
+  margin: 0;
+  font-family: Nintendos;
+  font-size: 100px;
+  font-weight: 100;
+  margin-right: 90px;
+
+}
+
+.pen{
+  transform: rotate(315deg);
+  width: 90px;
 }
