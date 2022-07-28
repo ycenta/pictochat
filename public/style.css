@@ -179,6 +179,6 @@ p{
 }
 
 .pen{
-  transform: rotate(315deg);
+  /* transform: rotate(315deg); */
   width: 90px;
 }
