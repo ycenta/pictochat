@@ -118,7 +118,49 @@ p{
   height: 25vh;
   width: 70%;
   background-image: linear-gradient(#fbfdfb, #d3d3d2);
+  position:relative;
 }
+
+.roombutton:hover:before {
+  top:-31px;left:-31px;
+  border-width: 20px 0 0 20px;
+  position:absolute; content:' ';
+  width:80px; height: 80px;
+  border-color:rgb(51, 80, 124); /* or whatever colour */
+  border-style:solid; /* or whatever style */
+  z-index: 1;
+  }
+
+.roombutton:hover:after {
+  top:-31px;right:-31px;
+  border-width: 20px 20px 0 0;
+  position:absolute; content:' ';
+  width:80px; height: 80px;
+  border-color:rgb(51, 80, 124); /* or whatever colour */
+  border-style:solid; /* or whatever style */
+  z-index: 1;
+  }
+
+.roombutton:hover>:first-child:before {
+  bottom:-31px;right:-31px;
+  border-width: 0 20px 20px 0;    
+  position:absolute; content:' ';
+  width:80px; height: 80px;
+  border-color:rgb(51, 80, 124); /* or whatever colour */
+  border-style:solid; /* or whatever style */
+  z-index: 1;
+  }
+
+.roombutton:hover>:first-child:after {
+  bottom:-31px;left:-31px;
+  border-width: 0 0 20px 20px;
+  position:absolute; content:' ';
+  width:80px; height: 80px;
+  border-color:rgb(51, 80, 124); /* or whatever colour */
+  border-style:solid; /* or whatever style */
+  z-index: 1;
+  }
+
 
 #chooseRoom{
   display: flex;
@@ -133,7 +175,7 @@ p{
   width: 25vh;
   height: 100%;
   align-items: center;
-  justify-content: space-around;
+  justify-content: end;
   border-right: 3px solid black;
  
 }
@@ -142,9 +184,9 @@ p{
   color:#e9e9e9;
   text-align: center;
   margin: 0;
-  font-size: 250px;
+  font-size: 290px;
   font-family: RevMiniPixel;
-  padding-top: 35px;
+  padding-top: 70px;
   padding-left: 20px;
   -webkit-text-stroke: 0.1px #5c5c5c;
     
@@ -166,8 +208,8 @@ p{
 .smallcube{
   display: inline-block;
   background-color: red;
-  width: 18vh;
-  height: 75%;
+  width: 12vh;
+  height: 50%;
   margin-right: 20px;
   background-image: url("DSNETWORK.png");
   background-size: contain;
@@ -185,7 +227,7 @@ p{
   font-size: 100px;
   font-weight: 100;
   margin-right: 90px;
-
+  color: rgb(54, 54, 54);
 }
 
 .pen{
