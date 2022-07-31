@@ -38,6 +38,8 @@
         socket.on('chat message', function(msg) {
           var item = document.createElement('p');
           item.textContent = msg;
+          //add class to item
+          item.className = "message";
           messages.appendChild(item);
           window.scrollTo(0, document.body.scrollHeight);
         });
