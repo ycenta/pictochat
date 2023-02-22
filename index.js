@@ -37,7 +37,7 @@ io.on('connection', (socket) => {
   });
 
   socket.on('username', (username) => {
-    console.log("new username set : "+username)
+    console.log("new username set  : "+username)
   });
   
 });
